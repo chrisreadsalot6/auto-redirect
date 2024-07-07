@@ -1,0 +1,10 @@
+{
+	"manifest_version": 3,
+	"name": "Social Media Redirector",
+	"version": "1.0",
+	"description": "Automatically redirects from social media feeds to messages page",
+	"permissions": ["webNavigation"],
+	"background": {
+		"service_worker": "background.js"
+	}
+}
