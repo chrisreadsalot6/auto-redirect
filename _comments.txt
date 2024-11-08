@@ -1,0 +1,3 @@
+MAYBES/SOMEDAYS
+1. Add a toggle button to disable the redirect
+2. Navigate with scripting rather than a redirect

@@ -4,14 +4,17 @@ const redirects = {
     "https://www.linkedin.com/feed/": "https://www.linkedin.com/messaging/thread/new",
     "https://x.com/": "https://www.x.com/messages",
     "https://x.com/home": "https://www.x.com/messages",
+    "https://twitter.com/": "https://www.x.com/messages",
+    "https://twitter.com/home": "https://www.x.com/messages"
 };
 
-chrome.webNavigation.onBeforeNavigate.addListener(
-    function (details) {
-        const redirectUrl = redirects[details.url];
-        if (redirectUrl) {
-            chrome.tabs.update(details.tabId, { url: redirectUrl });
+chrome.tabs.onUpdated.addListener(
+    function (tabId, changeInfo, tab) {
+        if (changeInfo.url) {
+            const redirectUrl = redirects[changeInfo.url];
+            if (redirectUrl) {
+                chrome.tabs.update(tabId, { url: redirectUrl });
+            }
         }
-    },
-    { url: Object.keys(redirects).map(url => ({ urlEquals: url })) }
+    }
 );
